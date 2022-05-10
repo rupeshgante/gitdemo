@@ -6,7 +6,7 @@ console.log(itemlist.lastElementChild);
 //Lastchild
 console.log(itemlist.lastChild)
 //First element child
-console.log(itemlist.firstElementChild)
+console.log(itemlist.firstElementChild);
 //next sibling
 console.log(itemlist.nextSibling)
 //next element sibling
@@ -33,4 +33,8 @@ console.log(newdiv)
 //insert in dom
 var container=document.querySelector('header .container')
 var h1=document.querySelector('header h1')
-//container.insertBefore(newdiv,h1)
+container.insertBefore(newdiv,h1)
+
+//var x=document.querySelector('itemlist.firstElementChild')
+//itemlist.insertBefore(newdiv,x)
+itemlist.innerHTML='<li>hello world</li>'+itemlist.innerHTML
