@@ -21,7 +21,7 @@ function createPost(post){
     return new Promise((resolve,reject)=>{
 setTimeout(()=>{
     posts.push(post);
-
+// console.log('after',posts);
     const error=false;
     if(!error){
         resolve();
@@ -55,16 +55,15 @@ function updateLastUserActivityTime(){
           user.lastUpated=new Date().getTime();
 resolve(user.lastUpated);
 
-        },1000)
+        },2000)
     });
 }
+promise2=updateLastUserActivityTime();
 function userupdate(){
-    Promise.all([createPost,updateLastUserActivityTime]).then(()=>
+    Promise.all([promise1,promise2]).then(()=>
     {
         console.log(posts,user.lastUpated);
-    })
-    .then(()=>{
-        deletePost().then(console.log(posts))
+        deletePost().then(()=>console.log(posts))
     })
     .catch(err=>console.log(err));
 }
@@ -103,7 +102,5 @@ function userupdate(){
 //     console.log(values));
 
 
-createPost({title:'post 3',body:'this is post 3'});
+const promise1=createPost({title:'post 3',body:'this is post 3'});
 userupdate();
-
-
