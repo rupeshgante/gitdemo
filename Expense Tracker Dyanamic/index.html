@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+</head>
+<body>
+     <label for="amount">Enter expense amount</label>
+<input type="text" id="amount" title="enter expense amount" required>
+<label for="description">Enter expense description</label>
+<input type="text" id="description" title="enter description" required>
+<label for="catageory">Choose a catageory</label>
+<select name="catageory" id="catageory">
+  <option value="movies">Movies</option>
+  <option value="Food">Food</option>
+  <option value="others">Others</option>
+  <input type="button" id="btn" value="Add Expense">
+<ul id="listOfExpenses"></ul>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+   <script src="expense.js"></script> 
+</body>
+</html>
