@@ -1,8 +1,10 @@
-try{
+
     var submit=document.getElementById('btn');
 submit.addEventListener('click',addExpense);
+
 async function addExpense(e){
-    e.preventDefault();
+    try{ 
+     e.preventDefault();
     const expense={
         amount:document.getElementById('amount').value,
         description:document.getElementById('description').value,
@@ -15,12 +17,19 @@ async function addExpense(e){
           document.getElementById('description').value='';
           document.getElementById("catageory").value='';
 }
+ catch(err){
+    console.log('error in submit '+err);
+}}
 document.addEventListener('DOMContentLoaded',async ()=>{
-    var res= await axios.get('https://crudcrud.com/api/f7a3df4f0bef4671866ffb2c06286286/ExpenseData');
+   try{ var res= await axios.get('https://crudcrud.com/api/f7a3df4f0bef4671866ffb2c06286286/ExpenseData');
         for(var i=0;i<res.data.length;i++){
             add(res.data[i]);
         }
+    }
+    catch(err){
 
+        console.log('domloaded'+err);
+    }
 })
 
 function add(data){
@@ -34,6 +43,7 @@ function add(data){
     edit.style.border="2px solid green";
     li.appendChild(edit);
     edit.addEventListener('click',async ()=>{
+        try{
         var a=document.getElementById('amount');
         var d=document.getElementById('description');
         var c=document.getElementById("catageory");
@@ -42,7 +52,10 @@ function add(data){
         c.value=data.catageory;
         await axios.delete(`https://crudcrud.com/api/f7a3df4f0bef4671866ffb2c06286286/ExpenseData/${data._id}`)
              li.remove();
-             
+        }
+    catch(err){
+   console.log(err);
+    }
     })
     var del=document.createElement('input');
     del.id='delete';
@@ -51,12 +64,14 @@ function add(data){
     del.style.border="2px solid red";
     li.appendChild(del)
     del.addEventListener('click',async()=>{
+        try{
         await axios.delete(`https://crudcrud.com/api/f7a3df4f0bef4671866ffb2c06286286/ExpenseData/${data._id}`)
              li.remove();
+        }
+        catch(err){
+            console.log(err);
+        }
 })
     listOfExpenses.appendChild(li);
     }
-}
-catch(err){
-    console.log(err);
-}
+  
